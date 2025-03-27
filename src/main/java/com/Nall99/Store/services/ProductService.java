@@ -62,6 +62,12 @@ public class ProductService {
         return product.orElse(null);
     }
 
+    public List<ProductModel> findByCategory(long category_id){
+        CategoryModel category = new CategoryModel();
+        category.setId(category_id);
+        return this.productRepository.findByCategory(category);
+    }
+
     private void categoryAndSupplier(ProductModel product){
         CategoryModel categoryExist = this.categoryRepository.findByName(product.getCategory().getName());
         SupplierModel supplierExist = this.supplierRepository.findByName(product.getSupplier().getName());

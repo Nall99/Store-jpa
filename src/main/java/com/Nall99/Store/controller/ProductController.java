@@ -64,4 +64,14 @@ public class ProductController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/findByCategory")
+    public ResponseEntity<List<ProductModel>> findByCategory(@RequestParam long category_id){
+        try {
+            List<ProductModel> products = this.productService.findByCategory(category_id);
+            return new ResponseEntity<List<ProductModel>>(products, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
